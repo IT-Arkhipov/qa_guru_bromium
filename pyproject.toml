@@ -7,8 +7,9 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-selenium = "4.4.3"
-webdriver-manager = "3.8.3"
+selenium = "^4.11.2"
+p = "*"
+webdriver-manager = "^4.0.1"
 
 [build-system]
 requires = ["poetry-core"]
