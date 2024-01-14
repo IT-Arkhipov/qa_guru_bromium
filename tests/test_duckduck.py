@@ -32,9 +32,9 @@ wait.until(element('[name=q]')).send_keys('selene yashaka', Keys.ENTER)
 '''
 
 query = '[name=q]'
-# wait.until(type(query, value='selene' + Keys.ENTER))
+wait.until(type(query, value='selene' + Keys.ENTER))
 # 1
-type('[name=q]', value='selene' + Keys.ENTER)
+# type('[name=q]', value='selene' + Keys.ENTER)
 # 2
 # browser.type('[name=q]', value='selene' + Keys.ENTER)
 # 3
@@ -45,9 +45,9 @@ type('[name=q]', value='selene' + Keys.ENTER)
 
 driver.back()
 
-# wait.until(type(query, value=' yashaka' + Keys.ENTER))
+wait.until(type(query, value=' yashaka' + Keys.ENTER))
 # 1
-type(query, ' yashaka' + Keys.ENTER)
+# type(query, ' yashaka' + Keys.ENTER)
 # 2
 # browser.type(query, ' yashaka' + Keys.ENTER)
 # 3
