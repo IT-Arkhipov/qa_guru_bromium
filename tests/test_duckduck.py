@@ -14,9 +14,7 @@ wait = WebDriverWait(driver, timeout=2, ignored_exceptions=(WebDriverException,)
 # 2
 # browser = Browser(driver)
 
-driver.get('https://ecosia.org')
-# 2
-# browser.open('https://ecosia.org')
+driver.get('https://duckduckgo.com')
 
 '''
 # in Selene:
@@ -34,9 +32,9 @@ wait.until(element('[name=q]')).send_keys('selene yashaka', Keys.ENTER)
 '''
 
 query = '[name=q]'
-wait.until(type(query, value='selene' + Keys.ENTER))
+# wait.until(type(query, value='selene' + Keys.ENTER))
 # 1
-# type('[name=q]', value='selene' + Keys.ENTER)
+type('[name=q]', value='selene' + Keys.ENTER)
 # 2
 # browser.type('[name=q]', value='selene' + Keys.ENTER)
 # 3
@@ -47,27 +45,21 @@ wait.until(type(query, value='selene' + Keys.ENTER))
 
 driver.back()
 
-wait.until(type(query, value=' yashaka' + Keys.ENTER))
+# wait.until(type(query, value=' yashaka' + Keys.ENTER))
 # 1
-# type(query, ' yashaka' + Keys.ENTER)
+type(query, ' yashaka' + Keys.ENTER)
 # 2
 # browser.type(query, ' yashaka' + Keys.ENTER)
 # 3
 # query.type(' yashaka' + Keys.ENTER)
 
-wait.until(click('[data-test-id=mainline-result-web]:nth-of-type(1) a'))
+# wait.until(click('[data-test-id=mainline-result-web]:nth-of-type(1) a'))
 # 1
-# click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
+click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
 # 2
 # browser.click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
 
-wait.until(click('[data-test-id=mainline-result-web]:nth-of-type(1) a'))
-# 1
-# click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
-# 2
-# browser.click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
-
-wait.until(number_of_elements('[id^=issue_]:not([id$=_link])', value=4))
+# wait.until(number_of_elements('[id^=issue_]:not([id$=_link])', value=4))
 # 1
 # assert_that(number_of_elements('[id^=issue_]:not([id$=_link])', value=4))
 # 2
