@@ -53,9 +53,10 @@ wait.until(type(query, value=' yashaka' + Keys.ENTER))
 # 3
 # query.type(' yashaka' + Keys.ENTER)
 
-# wait.until(click('[data-test-id=mainline-result-web]:nth-of-type(1) a'))
+wait.until(click('.react-results--main>li:nth-of-type(1) [data-testid="result-title-a"]'))
+# wait.until(click('.header__logo'))
 # 1
-click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
+# click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
 # 2
 # browser.click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
 
@@ -69,3 +70,5 @@ click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
 number_of_pulls = len(driver.find_elements(By.CSS_SELECTOR, '[id^=issue_]:not([id$=_link])'))
 assert number_of_pulls == 4
 '''
+
+driver.quit()
