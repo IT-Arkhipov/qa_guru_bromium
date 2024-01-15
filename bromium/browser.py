@@ -5,11 +5,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 
 class Browser:
-    def __init__(self, driver):
-        self.driver = driver
+    def __init__(self):
+        self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         self.wait = WebDriverWait(self.driver, timeout=2, ignored_exceptions=(WebDriverException,))
 
     @staticmethod
@@ -63,3 +66,15 @@ class Browser:
             return len(webelements) == value
 
         self.wait.until(predicate)
+
+    def open(self, url):
+        self.driver.get(url)
+
+    def back(self):
+        self.driver.back()
+
+    def quit(self):
+        self.driver.quit()
+
+
+browser = Browser()
