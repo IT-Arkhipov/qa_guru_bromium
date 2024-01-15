@@ -6,14 +6,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service as ChromeService
-
 
 class Browser:
-    def __init__(self):
-        self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    def __init__(self, driver):
+        self.driver = driver
         self.wait = WebDriverWait(self.driver, timeout=2, ignored_exceptions=(WebDriverException,))
 
     @staticmethod

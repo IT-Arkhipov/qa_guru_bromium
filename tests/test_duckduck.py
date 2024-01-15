@@ -1,14 +1,14 @@
 from selenium.webdriver import Keys
+from bromium.browser import Browser
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 
-from bromium.browser import Browser
 
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
 # 2
-browser = Browser()
+browser = Browser(driver)
 
 browser.driver.get('https://duckduckgo.com')
 
