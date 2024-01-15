@@ -1,16 +1,13 @@
-from selenium import webdriver
+
 from selenium.common import WebDriverException
 from selenium.webdriver import Keys
-from selenium.webdriver.chrome.service import Service as ChromeService
+
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from webdriver_manager.chrome import ChromeDriverManager
+
 
 from bromium.browser import Browser
-from bromium.conditions import element, type, click, number_of_elements
+from bromium.conditions import element, type_request, click, number_of_elements, driver, assert_that
 
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-wait = WebDriverWait(driver, timeout=2, ignored_exceptions=(WebDriverException,))
 # 2
 # browser = Browser(driver)
 
@@ -32,9 +29,9 @@ wait.until(element('[name=q]')).send_keys('selene yashaka', Keys.ENTER)
 '''
 
 query = '[name=q]'
-wait.until(type(query, value='selene' + Keys.ENTER))
+# wait.until(type_request(query, value='selene' + Keys.ENTER))
 # 1
-# type('[name=q]', value='selene' + Keys.ENTER)
+type_request(query, value='selene' + Keys.ENTER)
 # 2
 # browser.type('[name=q]', value='selene' + Keys.ENTER)
 # 3
@@ -45,24 +42,23 @@ wait.until(type(query, value='selene' + Keys.ENTER))
 
 driver.back()
 
-wait.until(type(query, value=' yashaka' + Keys.ENTER))
+# wait.until(type(query, value=' yashaka' + Keys.ENTER))
 # 1
-# type(query, ' yashaka' + Keys.ENTER)
+type_request(query, ' yashaka' + Keys.ENTER)
 # 2
 # browser.type(query, ' yashaka' + Keys.ENTER)
 # 3
 # query.type(' yashaka' + Keys.ENTER)
 
-wait.until(click('.react-results--main>li:nth-of-type(1) [data-testid="result-title-a"]'))
-# wait.until(click('.header__logo'))
+# wait.until(click('.react-results--main>li:nth-of-type(1) [data-testid="result-title-a"]'))
 # 1
-# click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
+click('.react-results--main>li:nth-of-type(1) [data-testid="result-title-a"]')
 # 2
 # browser.click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
 
-wait.until(number_of_elements('.md-content img', value=13))
+# wait.until(number_of_elements('.md-content img', value=13))
 # 1
-# assert_that(number_of_elements('[id^=issue_]:not([id$=_link])', value=4))
+assert_that('.md-content img', value=13)
 # 2
 # browser.assert_that(number_of_elements('[id^=issue_]:not([id$=_link])', value=4))
 '''
