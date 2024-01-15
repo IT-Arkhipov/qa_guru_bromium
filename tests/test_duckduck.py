@@ -60,7 +60,7 @@ wait.until(click('.react-results--main>li:nth-of-type(1) [data-testid="result-ti
 # 2
 # browser.click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
 
-# wait.until(number_of_elements('[id^=issue_]:not([id$=_link])', value=4))
+wait.until(number_of_elements('.md-content img', value=13))
 # 1
 # assert_that(number_of_elements('[id^=issue_]:not([id$=_link])', value=4))
 # 2
