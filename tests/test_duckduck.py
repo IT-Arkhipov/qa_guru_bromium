@@ -12,19 +12,9 @@ browser.driver.get('https://duckduckgo.com')
 
 query = '[name=q]'
 browser.type_request(query, value='selene' + Keys.ENTER)
-# 3
-# element('[name=q]').type('selene' + Keys.ENTER)
-# ...
-# query = element('[name=q]')
-# query.type('selene' + Keys.ENTER)
-
 driver.back()
 browser.type_request(query, ' yashaka' + Keys.ENTER)
-# 3
-# query.type(' yashaka' + Keys.ENTER)
-
 browser.click('.react-results--main>li:nth-of-type(1) [data-testid="result-title-a"]')
-
 browser.assert_that('.md-content img', value=13)
 
 driver.quit()
