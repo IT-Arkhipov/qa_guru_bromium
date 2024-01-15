@@ -4,24 +4,71 @@ from selenium import webdriver
 from selenium.common import WebDriverException
 from selenium.webdriver import Keys
 from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
-from bromium.conditions import element
-
+from bromium.conditions import click, number_of_elements
 
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 wait = WebDriverWait(driver, timeout=2, ignored_exceptions=(WebDriverException,))
 
+# 2
+# browser = Browser(driver)
 
 driver.get('https://duckduckgo.com')
 
-wait.until(element(By.CSS_SELECTOR, '#searchbox_input')).send_keys('bromium', Keys.ENTER)
+'''
+# in Selene:
+browser.element('[name=q]').type('selene').press_enter()
+# in Selenium WebDriver:
+driver.find_element(By.CSS_SELECTOR, '[name=q]').send_keys('selene', Keys.ENTER)
+# OR with wait
+def find_element(driver):
+    return driver.find_element(By.CSS_SELECTOR, '[name=q]')
+wait.until(find_element).send_keys('selene', Keys.ENTER)
+# OR with built-in expected condition
+wait.until(visibility_of_element_located((By.NAME, 'q'))).send_keys('selene yashaka', Keys.ENTER)
+# OR with custom expected condition
+wait.until(element('[name=q]')).send_keys('selene yashaka', Keys.ENTER)
+'''
 
-wait.until(element(
-    By.CSS_SELECTOR, '.react-results--main li:nth-child(2) [data-testid="result-title-a"]')
-).click()
+query = '[name=q]'
+wait.until(type(query, value='selene' + Keys.ENTER))
+# 1
+# type('[name=q]', value='selene' + Keys.ENTER)
+# 2
+# browser.type('[name=q]', value='selene' + Keys.ENTER)
+# 3
+# element('[name=q]').type('selene' + Keys.ENTER)
+# ...
+# query = element('[name=q]')
+# query.type('selene' + Keys.ENTER)
 
-time.sleep(3)
+driver.back()
+
+wait.until(type(query, value=' yashaka' + Keys.ENTER))
+# 1
+# type(query, ' yashaka' + Keys.ENTER)
+# 2
+# browser.type(query, ' yashaka' + Keys.ENTER)
+# 3
+# query.type(' yashaka' + Keys.ENTER)
+
+wait.until(click('.react-results--main>li:nth-of-type(1) [data-testid="result-title-a"]'))
+# wait.until(click('.header__logo'))
+# 1
+# click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
+# 2
+# browser.click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
+
+wait.until(number_of_elements('.md-content img', value=13))
+# 1
+# assert_that(number_of_elements('[id^=issue_]:not([id$=_link])', value=4))
+# 2
+# browser.assert_that(number_of_elements('[id^=issue_]:not([id$=_link])', value=4))
+'''
+# less stable version:
+number_of_pulls = len(driver.find_elements(By.CSS_SELECTOR, '[id^=issue_]:not([id$=_link])'))
+assert number_of_pulls == 4
+'''
 
 driver.quit()
