@@ -45,7 +45,7 @@ def element(selector):
     def predicate(driver):
         return _element_if_visible(driver.find_element(*to_locator(selector)))
 
-    return predicate
+    wait.until(predicate)
 
 
 def type_request(selector, value):
@@ -54,7 +54,7 @@ def type_request(selector, value):
         web_element.send_keys(value)
         return web_element
 
-    wait.until(command)
+    return wait.until(command)
 
 
 def click(selector):
@@ -65,7 +65,7 @@ def click(selector):
         webelement.click()
         return webelement
 
-    wait.until(command)
+    return wait.until(command)
 
 
 def number_of_elements(selector, value: int):
@@ -74,7 +74,7 @@ def number_of_elements(selector, value: int):
         webelements = driver.find_elements(*to_locator(selector))
         return len(webelements) == value
 
-    return predicate
+    wait.until(predicate)
 
 
 def assert_that(selector, value: int):
@@ -82,4 +82,4 @@ def assert_that(selector, value: int):
         webelements = driver.find_elements(*to_locator(selector))
         return len(webelements) == value
 
-    wait.until(predicate)
+    return wait.until(predicate)
