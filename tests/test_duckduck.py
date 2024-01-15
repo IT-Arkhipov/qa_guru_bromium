@@ -9,7 +9,7 @@ from bromium.browser import Browser
 from bromium.conditions import element, type_request, click, number_of_elements, driver, assert_that
 
 # 2
-# browser = Browser(driver)
+browser = Browser(driver)
 
 driver.get('https://duckduckgo.com')
 
@@ -31,9 +31,9 @@ wait.until(element('[name=q]')).send_keys('selene yashaka', Keys.ENTER)
 query = '[name=q]'
 # wait.until(type_request(query, value='selene' + Keys.ENTER))
 # 1
-type_request(query, value='selene' + Keys.ENTER)
+# type_request(query, value='selene' + Keys.ENTER)
 # 2
-# browser.type('[name=q]', value='selene' + Keys.ENTER)
+browser.type_request(query, value='selene' + Keys.ENTER)
 # 3
 # element('[name=q]').type('selene' + Keys.ENTER)
 # ...
@@ -44,23 +44,23 @@ driver.back()
 
 # wait.until(type(query, value=' yashaka' + Keys.ENTER))
 # 1
-type_request(query, ' yashaka' + Keys.ENTER)
+# type_request(query, ' yashaka' + Keys.ENTER)
 # 2
-# browser.type(query, ' yashaka' + Keys.ENTER)
+browser.type_request(query, ' yashaka' + Keys.ENTER)
 # 3
 # query.type(' yashaka' + Keys.ENTER)
 
 # wait.until(click('.react-results--main>li:nth-of-type(1) [data-testid="result-title-a"]'))
 # 1
-click('.react-results--main>li:nth-of-type(1) [data-testid="result-title-a"]')
+# click('.react-results--main>li:nth-of-type(1) [data-testid="result-title-a"]')
 # 2
-# browser.click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
+browser.click('.react-results--main>li:nth-of-type(1) [data-testid="result-title-a"]')
 
 # wait.until(number_of_elements('.md-content img', value=13))
 # 1
-assert_that('.md-content img', value=13)
+# assert_that('.md-content img', value=13)
 # 2
-# browser.assert_that(number_of_elements('[id^=issue_]:not([id$=_link])', value=4))
+browser.assert_that('.md-content img', value=13)
 '''
 # less stable version:
 number_of_pulls = len(driver.find_elements(By.CSS_SELECTOR, '[id^=issue_]:not([id$=_link])'))
