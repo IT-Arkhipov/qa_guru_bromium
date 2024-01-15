@@ -6,7 +6,7 @@ from selenium.webdriver import Keys
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
-from bromium.conditions import click, number_of_elements
+from bromium.conditions import click, number_of_elements, type
 
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 wait = WebDriverWait(driver, timeout=2, ignored_exceptions=(WebDriverException,))
