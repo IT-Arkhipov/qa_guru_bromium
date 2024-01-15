@@ -2,12 +2,10 @@ from selenium import webdriver
 from selenium.common import WebDriverException
 from selenium.webdriver import Keys
 from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
-from bromium.browser import Browser
-from bromium.conditions import element, type, click, number_of_elements
+from bromium.conditions import type, click, number_of_elements
 
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 wait = WebDriverWait(driver, timeout=2, ignored_exceptions=(WebDriverException,))
@@ -61,13 +59,7 @@ wait.until(click('[data-test-id=mainline-result-web]:nth-of-type(1) a'))
 # 2
 # browser.click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
 
-wait.until(click('[data-test-id=mainline-result-web]:nth-of-type(1) a'))
-# 1
-# click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
-# 2
-# browser.click('[data-test-id=mainline-result-web]:nth-of-type(1) a')
-
-wait.until(number_of_elements('[id^=issue_]:not([id$=_link])', value=4))
+wait.until(number_of_elements('.md-content img', value=13))
 # 1
 # assert_that(number_of_elements('[id^=issue_]:not([id$=_link])', value=4))
 # 2
@@ -77,3 +69,4 @@ wait.until(number_of_elements('[id^=issue_]:not([id$=_link])', value=4))
 number_of_pulls = len(driver.find_elements(By.CSS_SELECTOR, '[id^=issue_]:not([id$=_link])'))
 assert number_of_pulls == 4
 '''
+driver.quit()
